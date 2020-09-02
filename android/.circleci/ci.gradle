@@ -1,0 +1,153 @@
+import java.util.regex.Matcher
+import java.util.regex.Pattern
+
+ext.getBuildNumber = {
+    if (isCircleCI()) {
+        return System.env.CIRCLE_BUILD_NUM as int
+    } else if (isReleaseBuildType()) {
+        return getReleaseVersionCode()
+    } else {
+        return 1
+    }
+}
+
+ext.getFullBuildName = {
+    if (isCircleCI()) {
+        return getBaseBuildName() + "." + getBuildNumber() as String
+    } else {
+        return getBaseBuildName()
+    }
+}
+
+ext.getBaseBuildName = {
+    "1.0"
+}
+
+ext.getReleaseVersionCode = {
+    2910001 // compile with 29, version 1.0, build 001
+}
+
+ext.isCircleCI = {
+    (System.env.CI ?: false) as boolean
+}
+
+ext.isGithubCI = {
+    (System.env.GITHUB_ACTIONS ?: false) as boolean
+}
+
+ext.getJiraLogin = {
+    System.env.JIRA_LOGIN
+}
+
+ext.getJiraToken = {
+    System.env.JIRA_TOKEN
+}
+
+ext.getProjectKey = {
+    System.env.KEY_PROJECT
+}
+
+ext.getGoogleApplicationCredentials = {
+    System.env.GOOGLE_APPLICATION_CREDENTIALS
+}
+
+ext.getOauthClientId = {
+    if (isCircleCI() || isGithubCI()) return System.env.KEY_OAUTH_CLIENT_ID as String
+    else {
+        def signing = rootProject.file("google_photos.properties")
+        def keystoreProperties = new Properties()
+        keystoreProperties.load(new FileInputStream(signing))
+        return keystoreProperties['oauthClientId'] as String
+    }
+}
+
+ext.getOauthClientSecret = {
+    if (isCircleCI() || isGithubCI()) return System.env.KEY_OAUTH_CLIENT_SECRET as String
+    else {
+        def signing = rootProject.file("google_photos.properties")
+        def keystoreProperties = new Properties()
+        keystoreProperties.load(new FileInputStream(signing))
+        return keystoreProperties['oauthClientSecret'] as String
+    }
+}
+
+ext.getKeyAlias = {
+    if (isCircleCI() || isGithubCI()) return System.env.KEY_ALIAS as String
+    else {
+        def signing = rootProject.file("keystore.properties")
+        def keystoreProperties = new Properties()
+        keystoreProperties.load(new FileInputStream(signing))
+        return keystoreProperties['keyAlias'] as String
+    }
+}
+
+ext.getKeyPassword = {
+    if (isCircleCI() || isGithubCI()) return System.env.KEY_PASSWORD as String
+    else {
+        def signing = rootProject.file("keystore.properties")
+        def keystoreProperties = new Properties()
+        keystoreProperties.load(new FileInputStream(signing))
+        return keystoreProperties['keyPassword'] as String
+    }
+}
+
+ext.getOauthClientId = {
+    if (isCircleCI() || isGithubCI()) return System.env.KEY_OAUTH_CLIENT_ID as String
+    else {
+        def signing = rootProject.file("google_photos.properties")
+        def keystoreProperties = new Properties()
+        keystoreProperties.load(new FileInputStream(signing))
+        return keystoreProperties['oauthClientId'] as String
+    }
+}
+
+ext.getOauthClientSecret = {
+    if (isCircleCI() || isGithubCI()) return System.env.KEY_OAUTH_CLIENT_SECRET as String
+    else {
+        def signing = rootProject.file("google_photos.properties")
+        def keystoreProperties = new Properties()
+        keystoreProperties.load(new FileInputStream(signing))
+        return keystoreProperties['oauthClientSecret'] as String
+    }
+}
+
+ext.getStoreFile = {
+    return file('../lc.jks')
+}
+
+ext.getStorePassword = {
+    if (isCircleCI() || isGithubCI()) return System.env.STORE_PASSWORD as String
+    else {
+        def signing = rootProject.file("keystore.properties")
+        def keystoreProperties = new Properties()
+        keystoreProperties.load(new FileInputStream(signing))
+        return keystoreProperties['storePassword'] as String
+    }
+}
+
+gradle.buildFinished {
+    println("VersionName: ${android.defaultConfig.versionName}")
+    println("VersionCode: ${getBuildNumber()}")
+}
+
+def isReleaseBuildType() {
+    Gradle gradle = getGradle()
+    String taskReqStr = gradle.getStartParameter().getTaskRequests().toString()
+    Pattern pattern
+
+    if (taskReqStr.contains("assemble")) {
+        pattern = Pattern.compile("assemble(\\w+)(Release|Debug)")
+    } else {
+        pattern = Pattern.compile("generate(\\w+)(Release|Debug)")
+    }
+
+    Matcher matcher = pattern.matcher(taskReqStr)
+    if (matcher.find()) {
+        String buildType = matcher.group(2)
+        println "BuildType: " + buildType
+        return buildType == "Release"
+    } else {
+        println "BuildType: Unknown BuildType"
+        return false
+    }
+}

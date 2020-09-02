@@ -1,0 +1,17 @@
+rootProject.name = 'Artem'
+include ':app',
+        ':react-native-activity-result',
+        ':visionbuilder:localmedia',
+        ':visionbuilder:ffmpeg_facade',
+        ':visionbuilder:google-photo-provider',
+        ':visionbuilder:ffmpeg',
+        ':visionbuilder:feature'
+
+project(':react-native-activity-result').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-activity-result/android')
+project(':visionbuilder:feature').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-activity-result/visionbuilder/feature')
+project(':visionbuilder:ffmpeg').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-activity-result/visionbuilder/ffmpeg')
+project(':visionbuilder:google-photo-provider').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-activity-result/visionbuilder/google-photo-provider')
+project(':visionbuilder:ffmpeg_facade').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-activity-result/visionbuilder/ffmpeg_facade')
+project(':visionbuilder:localmedia').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-activity-result/visionbuilder/localmedia')
+
+apply from: file("../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesSettingsGradle(settings)

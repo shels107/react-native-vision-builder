@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "life-chronicle-993b2",
+  "private_key_id": "c9ce8c057f67dba352dde97f24f2e6c9d86e4e5d",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDbAbjReRKetdxe\nQyvfH6vj5+N9qDzddUh2tRs6QMknWRf81Ka2qP5fiFjWzPjNQxrIJ3aupwYh2uVa\ndouWg1hfKcouX7QASCLCQFTXNvEEmNKX5riuBl2f+7QlvgYC/mypAOeyiFTUBV5/\n1JDU7Z1f+k2ZQl+VHLTHhv3QL2wexH19GA3X5SLznVqMY0R9nlvif+QTL56KWbG9\n8ngtp98YOJ6av2MA8f4yeMDJZBZqDjGOrEwVFJL7RNlBwgSsPXb13lkG8z370xNV\nubpqyVJyAsrcwVgvOF2pGYjZ0oflVCgzOYcRx2KWUoWdENSE+/NlQWx1qVPyMQaN\n4016q9VPAgMBAAECggEAAUsST1JatMs4IOpeoPOr7S2aX0yWB2zA38qT/ZUSWwQg\nqyKKVXvL/L5uX95X/cZOqy3oeoGL/LkxL4aRrnLaG73AbuOryXCjm+gLWDX/2Foa\nrED1iDmLZf1zg+GKYYwlEh5qP9ikP5hEhZa4wDki+8UbnjMRI21G+AKpDwiop8nY\nc+oeRPaLQGWPbcTMyV36HLqLIWUnRru470LHDWT1hA5lbuSEVa4UJ/R3rOz5mjjn\nQ6w1x+eulKNZV2afkdjB0sh3IuoW/u4sRnqDadlGF2sDCwemWs4Q5f5cuQVLMsPA\n5OguqsHKa3YoIvpF4nBj+bV9DC5u+GDrRT1WzhjdoQKBgQDviVMfwqcmKayJMXGr\nKNnVa5DBsRiRFJaYvIY82bmR3cZA55cASYrY5tW5XJFTP0At+wwh6Wny1hTecxTp\nwrnhwjaRDmeQxJZhXu7/WV8HTNCfHR0/9r8NF0+uGKRdd0rMUXEhlg1eTmQMy0Cl\nxi/olFS6DGOZ1ONm3/e5mGpeEQKBgQDqDyyp5ROCc2iqG/M3UZ3XXLOxTrgDnMqY\nBj5hlMAOYDXYjCmO6BSRGPNQl2PxV3O6bkST7yn5PGLtvil8gMfveEKgB5xGAjSf\nAta1iVp1BgmDs0aRorJmXAjicHdyfpsdQ6JPsaqvcTl8sx0B9DJM5nJ7EFA18GUC\nI0OHBtsdXwKBgQC24l0x0Zd23riZosOLj8wJU3AZQlJkapi0krPW/9DcGrxET82N\nbZjyFAQ32wIl0hP5R0SzG5hFzMfwM2NTOtZbFMI+rAXMlRvPygCluyF/3FkoMr1j\nWcvyfcrbPHs51VupdcDviLY6O5XN4t0/9HodlCrARbdB+zWIFRX5gPItUQKBgQDL\nFomZjPPlr//0AjaCHGZJtN0SDwypzcUYLeq4vtn6X065a7yvi/40fCK7HfEROuFm\ntUD5335bDSOFyAe1SQSya3Xb516YfFduVYc5k0mS2r8ssESeHz6OhHMND6sFBIfQ\n15uhbLZ+bk8EPWIBDQMMKLTSxS/j7YenWDPCmJdNHwKBgEXnEB2whcCZVmEdxnuC\n9nEX5ToCPJPoTTEE8JKI6VVS7YHm4J/4WFntLeHlonKTNQqL6r2VdKpL4EwCB0SP\njPphQwnBoKLmy+OoX2Ad2Vo+WzYXJQo6A6wMJvhdfSKiF7YNqNzg8kExMFFWP10t\n9noWgjh63a6g6IZNXasrD+tY\n-----END PRIVATE KEY-----\n",
+  "client_email": "lifechroniclefirebasequalityad@life-chronicle-993b2.iam.gserviceaccount.com",
+  "client_id": "106157934713797659215",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/lifechroniclefirebasequalityad%40life-chronicle-993b2.iam.gserviceaccount.com"
+}

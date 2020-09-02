@@ -1,0 +1,39 @@
+version: 2
+jobs:
+
+  build_and_deploy_debug:
+    docker:
+    - image: circleci/android:api-29
+    environment:
+      JVM_OPTS: -Xmx4096m
+      GRADLE_OPTS: -Xmx4096m -XX:+HeapDumpOnOutOfMemoryError -Dfile.encoding=UTF-8
+    steps:
+    - checkout
+    - restore_cache:
+        key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}-{{ checksum  "localmedia/build.gradle" }}-{{ checksum  "google-photo-provider/build.gradle" }}
+    - run:
+        name: create_json
+        command: echo $GOOGLE_APPLICATION_CREDENTIALS_BASE | base64 --decode > /home/circleci/project/credentials.json
+    - run:
+        name: build
+        command: ./gradlew app:assembleDebug --no-daemon --max-workers=2
+    - run:
+        name: upload
+        command: export GOOGLE_APPLICATION_CREDENTIALS="/home/circleci/project/credentials.json" && ./gradlew releaseNotes appDistributionUploadDebug --no-daemon --max-workers=2
+    - save_cache:
+        paths:
+        - ~/.gradle
+        key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}-{{ checksum  "localmedia/build.gradle" }}-{{ checksum  "google-photo-provider/build.gradle" }}
+    - run:
+        name: push_tag
+        command: git config user.email "rosberry@rosberry.com"; git config user.name "Rosberry"; value=$(<app/releaseNotes.txt); git tag -a v1.0.${CIRCLE_BUILD_NUM} -m "${value}"; git push origin v1.0.${CIRCLE_BUILD_NUM}
+
+workflows:
+  version: 2
+  deploy_build:
+    jobs:
+      - build_and_deploy_debug:
+          filters:
+            branches:
+              only:
+                - testing
